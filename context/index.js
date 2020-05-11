@@ -26,7 +26,7 @@ const MovieProvider = ({ children }) => {
       `movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
     );
 
-    setNowPlayingMovies(response);
+    setNowPlayingMovies(response.data.results);
   }
 
   async function fetchMostPopular() {
@@ -42,7 +42,7 @@ const MovieProvider = ({ children }) => {
       `movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
     );
 
-    setTopRatedMovies(response);
+    setTopRatedMovies(response.data.results);
   }
 
   async function fetchSimilarMovies(id) {

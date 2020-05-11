@@ -3,12 +3,12 @@ import { StyleSheet, Text, ScrollView } from 'react-native';
 import { MovieContext } from '../../context';
 import { MovieCard } from '../movieCard';
 
-export const MostPopular = () => {
-  const { mostPopularMovies } = useContext(MovieContext);
-  console.log(mostPopularMovies);
+export const TopRated = () => {
+  const { topRatedMovies } = useContext(MovieContext);
+
   return (
     <ScrollView horizontal={true}>
-      {mostPopularMovies.map((movie) => (
+      {topRatedMovies.map((movie) => (
         <MovieCard movie={movie} />
       ))}
     </ScrollView>
