@@ -50,7 +50,7 @@ const MovieProvider = ({ children }) => {
       `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
     );
 
-    setSimilarMovies(response);
+    setSimilarMovies(response.data.results);
   }
 
   async function fetchMoviesByGenre(id) {
@@ -58,7 +58,7 @@ const MovieProvider = ({ children }) => {
       `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`
     );
 
-    setMoviesByGenre(response);
+    setMoviesByGenre(response.data.results);
   }
 
   async function fetchSearchResults(searchValue) {
@@ -66,7 +66,7 @@ const MovieProvider = ({ children }) => {
       `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
     );
 
-    setSearchResults(response);
+    setSearchResults(response).data.results;
   }
 
   async function fetchGenreList() {
@@ -74,7 +74,7 @@ const MovieProvider = ({ children }) => {
       `genre/movie/list?api_key=${apiKey}&language=en-US`
     );
 
-    setGenreList(response);
+    setGenreList(response.data.genres);
   }
 
   async function fetchMovieDetails(id) {
@@ -82,7 +82,7 @@ const MovieProvider = ({ children }) => {
       `movie/${id}?api_key=${apiKey}&language=en-US&page=1`
     );
 
-    setMovieDetails(response);
+    setMovieDetails(response.data);
   }
 
   async function fetchMovieCast(id) {
@@ -90,7 +90,7 @@ const MovieProvider = ({ children }) => {
       `movie/${id}/credits?api_key=${apiKey}`
     );
 
-    setMovieCast(response);
+    setMovieCast(response.data.cast);
   }
 
   async function fetchMovieTrailer(id) {
@@ -98,13 +98,13 @@ const MovieProvider = ({ children }) => {
       `movie/${id}/videos?api_key=${apiKey}&language=en-US`
     );
 
-    setMovieTrailer(response);
+    setMovieTrailer(response.data.results);
   }
 
   async function fetchCastMemberDetails(id) {
     const response = await movieApiAPI.get(`person/${id}?api_key=${apiKey}`);
 
-    setCastMemberDetails(response);
+    setCastMemberDetails(response.data);
   }
 
   async function fetchCastMemberAppearances(id) {
@@ -112,7 +112,7 @@ const MovieProvider = ({ children }) => {
       `person/${id}/movie_credits?api_key=${apiKey}`
     );
 
-    setCastMemberAppearances(response);
+    setCastMemberAppearances(response.data.cast);
   }
 
   useEffect(() => {

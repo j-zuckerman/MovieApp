@@ -1,16 +1,24 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Navbar } from './components/header/navbar';
 import MovieProvider from './context';
 import { Home } from './screens/home';
+import { Details } from './screens/details';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View>
-      <MovieProvider>
-        <Navbar />
-        <Home />
-      </MovieProvider>
-    </View>
+    <MovieProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home}></Stack.Screen>
+          <Stack.Screen name="Details" component={Details}></Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </MovieProvider>
   );
 }
