@@ -8,7 +8,7 @@ export const MovieCast = ({ data }) => {
     <ScrollView horizontal={true}>
       {data.map((castMember) => (
         <Image
-          style={{ width: 50, height: 50 }}
+          style={styles.castMember}
           key={castMember.id}
           source={{ uri: `${baseImageURLProfile}${castMember.profile_path}` }}
         />
@@ -16,3 +16,12 @@ export const MovieCast = ({ data }) => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  castMember: {
+    margin: 8,
+    width: 50,
+    height: 70,
+    borderRadius: 15,
+  },
+});

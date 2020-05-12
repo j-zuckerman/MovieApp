@@ -6,7 +6,7 @@ export const Details = ({ route, navigation }) => {
   const { id } = route.params;
   return (
     <View>
-      <MovieDetails movieId={id}></MovieDetails>
+      <MovieDetails navigation={navigation} movieId={id}></MovieDetails>
     </View>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, Button } from 'react-native';
 import { MovieContext } from '../../context';
 import { MovieCard } from '../movieCard';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const MostPopular = ({ navigation }) => {
   const { mostPopularMovies } = useContext(MovieContext);
@@ -10,13 +11,13 @@ export const MostPopular = ({ navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {mostPopularMovies.map((movie) => (
-        <>
-          <MovieCard movie={movie} />
-          <Button
-            title="View Details"
+        <View>
+          <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: movie.id })}
-          ></Button>
-        </>
+          >
+            <MovieCard movie={movie} navigation={navigation} />
+          </TouchableOpacity>
+        </View>
       ))}
     </ScrollView>
   );
