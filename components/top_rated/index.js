@@ -10,7 +10,7 @@ export const TopRated = ({ navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {topRatedMovies.map((movie) => (
-        <View>
+        <View key={movie.id}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: movie.id })}
           >

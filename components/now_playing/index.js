@@ -10,7 +10,7 @@ export const NowPlaying = ({ navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {nowPlayingMovies.map((movie) => (
-        <View>
+        <View key={movie.id}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: movie.id })}
           >

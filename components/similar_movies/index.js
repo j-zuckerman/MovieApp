@@ -7,7 +7,7 @@ export const SimilarMovies = ({ data, navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {data.map((movie) => (
-        <View>
+        <View key={movie.id}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: movie.id })}
           >

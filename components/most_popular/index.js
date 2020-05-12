@@ -11,7 +11,7 @@ export const MostPopular = ({ navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {mostPopularMovies.map((movie) => (
-        <View>
+        <View key={movie.id}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Details', { id: movie.id })}
           >
