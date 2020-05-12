@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, ScrollView } from 'react-native';
 import { MovieContext } from '../../context';
+import { MovieCast } from '../movie_cast';
+import { SimilarMovies } from '../similar_movies';
 
 export const MovieDetails = ({ movieId }) => {
   const {
@@ -31,6 +33,9 @@ export const MovieDetails = ({ movieId }) => {
       <Text>{movieDetails.runtime}</Text>
       <Text>{movieDetails.release_date}</Text>
       <Text>{movieDetails.overview}</Text>
+
+      <MovieCast data={movieCast}></MovieCast>
+      <SimilarMovies data={similarMovies}></SimilarMovies>
     </>
   );
 };
