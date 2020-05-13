@@ -26,11 +26,10 @@ export const MovieCard = ({ movie }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    marginTop: 20,
-    marginBottom: 20,
+
     marginRight: 20,
     maxWidth: 160,
-    maxHeight: 270,
+    maxHeight: 280,
   },
   moviePoster: {
     borderRadius: 15,

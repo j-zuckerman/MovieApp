@@ -8,6 +8,7 @@ import MovieProvider from './context';
 import { Home } from './screens/home';
 import { Details } from './screens/details';
 import { CastMember } from './screens/cast_member';
+import { Genres } from './screens/genres';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
             name="Cast Member"
             component={CastMember}
           ></Stack.Screen>
+          <Stack.Screen name="Genres" component={Genres}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </MovieProvider>

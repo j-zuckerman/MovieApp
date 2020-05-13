@@ -138,6 +138,7 @@ const MovieProvider = ({ children }) => {
         searchResults,
         fetchSearchResults,
         genreList,
+        fetchGenreList,
         movieDetails,
         fetchMovieDetails,
         movieTrailer,
