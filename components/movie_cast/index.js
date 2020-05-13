@@ -1,17 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const baseImageURLProfile = 'https://image.tmdb.org/t/p/w45/';
 
-export const MovieCast = ({ data }) => {
+export const MovieCast = ({ data, navigation }) => {
   return (
     <ScrollView horizontal={true}>
       {data.map((castMember) => (
-        <Image
-          style={styles.castMember}
-          key={castMember.id}
-          source={{ uri: `${baseImageURLProfile}${castMember.profile_path}` }}
-        />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Cast Member', { id: castMember.id })
+          }
+        >
+          <Image
+            style={styles.castMember}
+            key={castMember.id}
+            source={{ uri: `${baseImageURLProfile}${castMember.profile_path}` }}
+          />
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

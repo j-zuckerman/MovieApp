@@ -102,7 +102,7 @@ const MovieProvider = ({ children }) => {
   }
 
   async function fetchCastMemberDetails(id) {
-    const response = await movieApiAPI.get(`person/${id}?api_key=${apiKey}`);
+    const response = await movieApi.get(`person/${id}?api_key=${apiKey}`);
 
     setCastMemberDetails(response.data);
   }

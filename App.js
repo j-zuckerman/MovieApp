@@ -7,6 +7,7 @@ import { Navbar } from './components/header/navbar';
 import MovieProvider from './context';
 import { Home } from './screens/home';
 import { Details } from './screens/details';
+import { CastMember } from './screens/cast_member';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,10 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home}></Stack.Screen>
           <Stack.Screen name="Details" component={Details}></Stack.Screen>
+          <Stack.Screen
+            name="Cast Member"
+            component={CastMember}
+          ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </MovieProvider>
