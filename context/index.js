@@ -62,11 +62,13 @@ const MovieProvider = ({ children }) => {
   }
 
   async function fetchSearchResults(searchValue) {
-    const response = await movieDbAPI.get(
-      `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
-    );
+    if (searchValue.length > 1) {
+      const response = await movieApi.get(
+        `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
+      );
 
-    setSearchResults(response).data.results;
+      setSearchResults(response.data.results);
+    }
   }
 
   async function fetchGenreList() {
