@@ -6,6 +6,7 @@ import { TopRated } from '../components/top_rated';
 import { NowPlaying } from '../components/now_playing';
 import { GenreList } from '../components/genres';
 import { Footer } from '../components/footer';
+import { BottomNavigator } from '../components/bottom_navigator';
 
 export const Home = ({ navigation }) => {
   return (
@@ -21,7 +22,6 @@ export const Home = ({ navigation }) => {
         <Text style={styles.header}>Now Playing</Text>
         <NowPlaying navigation={navigation} />
       </ScrollView>
-      <Footer></Footer>
     </View>
   );
 };
