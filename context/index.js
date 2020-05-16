@@ -21,6 +21,8 @@ const MovieProvider = ({ children }) => {
   const [castMemberDetails, setCastMemberDetails] = useState([]);
   const [castMemberAppearances, setCastMemberAppearances] = useState([]);
 
+  const [isLoaded, setLoaded] = useState(false);
+
   async function fetchNowPlaying() {
     const response = await movieApi.get(
       `movie/now_playing?api_key=${apiKey}&language=en-US&page=1`
@@ -45,38 +47,20 @@ const MovieProvider = ({ children }) => {
     setTopRatedMovies(response.data.results);
   }
 
+  async function fetchHomePageData() {
+    setLoaded(false);
+    fetchTopRated();
+    fetchMostPopular();
+    fetchNowPlaying();
+    setLoaded(true);
+  }
+
   async function fetchSimilarMovies(id) {
     const response = await movieApi.get(
       `movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
     );
 
     setSimilarMovies(response.data.results);
-  }
-
-  async function fetchMoviesByGenre(id) {
-    const response = await movieApi.get(
-      `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`
-    );
-
-    setMoviesByGenre(response.data.results);
-  }
-
-  async function fetchSearchResults(searchValue) {
-    if (searchValue.length > 1) {
-      const response = await movieApi.get(
-        `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
-      );
-
-      setSearchResults(response.data.results);
-    }
-  }
-
-  async function fetchGenreList() {
-    const response = await movieApi.get(
-      `genre/movie/list?api_key=${apiKey}&language=en-US`
-    );
-
-    setGenreList(response.data.genres);
   }
 
   async function fetchMovieDetails(id) {
@@ -103,6 +87,16 @@ const MovieProvider = ({ children }) => {
     setMovieTrailer(response.data.results);
   }
 
+  async function fetchDetailsPageData(id) {
+    setLoaded(false);
+
+    fetchMovieDetails(id);
+    fetchMovieCast(id);
+    fetchMovieTrailer(id);
+
+    setLoaded(true);
+  }
+
   async function fetchCastMemberDetails(id) {
     const response = await movieApi.get(`person/${id}?api_key=${apiKey}`);
 
@@ -117,15 +111,58 @@ const MovieProvider = ({ children }) => {
     setCastMemberAppearances(response.data.cast);
   }
 
+  async function fetchCastMemberPageData(id) {
+    setLoaded(false);
+
+    fetchCastMemberAppearances(id);
+    fetchCastMemberDetails(id);
+
+    setLoaded(true);
+  }
+
+  async function fetchMoviesByGenre(id) {
+    setLoaded(false);
+    const response = await movieApi.get(
+      `discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`
+    );
+
+    setMoviesByGenre(response.data.results);
+    setLoaded(true);
+  }
+
+  async function fetchSearchResults(searchValue) {
+    if (searchValue.length > 1) {
+      setLoaded(false);
+      const response = await movieApi.get(
+        `search/movie?api_key=${apiKey}&query=${searchValue}&page=1`
+      );
+
+      setSearchResults(response.data.results);
+      setLoaded(true);
+    }
+  }
+
+  async function fetchGenreList() {
+    setLoaded(false);
+    const response = await movieApi.get(
+      `genre/movie/list?api_key=${apiKey}&language=en-US`
+    );
+
+    setGenreList(response.data.genres);
+    setLoaded(true);
+  }
+
   useEffect(() => {
-    fetchMostPopular();
-    fetchNowPlaying();
-    fetchTopRated();
+    fetchHomePageData();
   }, []);
 
   return (
     <MovieContext.Provider
       value={{
+        fetchHomePageData,
+        fetchCastMemberPageData,
+        fetchDetailsPageData,
+        isLoaded,
         nowPlayingMovies,
         fetchNowPlaying,
         mostPopularMovies,

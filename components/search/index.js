@@ -7,7 +7,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const Search = ({ route, navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { searchResults, fetchSearchResults } = useContext(MovieContext);
+  const { searchResults, fetchSearchResults, isLoaded } = useContext(
+    MovieContext
+  );
 
   const updateSearch = (text) => {
     const query = text;
