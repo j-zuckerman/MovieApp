@@ -5,10 +5,10 @@ import { MovieCard } from '../movieCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const TopRated = ({ navigation }) => {
-  const { topRatedMovies } = useContext(MovieContext);
+  const { topRatedMovies, isLoading } = useContext(MovieContext);
 
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView>
       {topRatedMovies.map((movie) => (
         <View key={movie.id}>
           <TouchableOpacity

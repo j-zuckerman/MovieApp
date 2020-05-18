@@ -90,6 +90,7 @@ const MovieProvider = ({ children }) => {
   async function fetchDetailsPageData(id) {
     setLoaded(false);
 
+    fetchSimilarMovies(id);
     fetchMovieDetails(id);
     fetchMovieCast(id);
     fetchMovieTrailer(id);

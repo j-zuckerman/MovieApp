@@ -2,12 +2,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import HomeStackNavigation from './HomeNavigation';
+import MovieStackNavigation from './MovieStackNavigation';
 import SearchNavigation from './SearchNavigation';
+import { DrawerNavigation } from './DrawerNavigation';
 
 const Tab = createBottomTabNavigator();
 
-export const TabNavigation = () => {
+export const BottomNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -25,18 +26,14 @@ export const TabNavigation = () => {
               iconName = 'md-search';
             }
 
-            return <Ionicons name={iconName} size={24} color="black" />;
+            return <Ionicons name={iconName} size={24} color="blue" />;
           },
         })}
-        tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'gray',
-        }}
       >
-        <Tab.Screen name="Home" component={HomeStackNavigation} />
-        <Tab.Screen name="Favorites" component={HomeStackNavigation} />
+        <Tab.Screen name="Home" component={DrawerNavigation} />
+        <Tab.Screen name="Favorites" component={MovieStackNavigation} />
         <Tab.Screen name="Search" component={SearchNavigation} />
-        <Tab.Screen name="Watch List" component={HomeStackNavigation} />
+        <Tab.Screen name="Watch List" component={MovieStackNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );

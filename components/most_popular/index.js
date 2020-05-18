@@ -9,7 +9,7 @@ export const MostPopular = ({ navigation }) => {
   console.log(mostPopularMovies);
   console.log(navigation);
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView>
       {mostPopularMovies.map((movie) => (
         <View key={movie.id}>
           <TouchableOpacity

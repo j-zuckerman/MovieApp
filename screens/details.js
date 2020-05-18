@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MovieDetails } from '../components/movie_details';
 
-export const Details = ({ route, navigation }) => {
+export const DetailsScreen = ({ route, navigation }) => {
   const { id } = route.params;
   return (
     <View>

@@ -8,7 +8,7 @@ export const NowPlaying = ({ navigation }) => {
   const { nowPlayingMovies } = useContext(MovieContext);
 
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView>
       {nowPlayingMovies.map((movie) => (
         <View key={movie.id}>
           <TouchableOpacity
