@@ -1,10 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Rating } from 'react-native-elements';
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements';
 
 const baseImageURLPoster = 'https://image.tmdb.org/t/p/w342/';
 
@@ -21,16 +17,10 @@ export const MovieCard = ({ movie }) => {
         <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
           {movie.title}
         </Text>
-        <Rating
-          type="custom"
-          imageSize={20}
-          readonly
-          startingValue={movie.vote_average / 2}
-          ratingColor="red"
-          ratingBackgroundColor="pink"
-          ratingTextColor="black"
-        />
-        <Text style={styles.vote}>{movie.vote_average}</Text>
+
+        <View style={styles.rating}>
+          <Text style={styles.vote}>Rating: {movie.vote_average}</Text>
+        </View>
       </View>
     </View>
   );
@@ -51,11 +41,17 @@ const styles = StyleSheet.create({
     height: 240,
   },
   title: {
-    fontSize: 14,
+    marginTop: 10,
+    fontSize: 18,
     maxWidth: 200,
     fontWeight: 'bold',
+    letterSpacing: 2,
+  },
+  rating: {
+    flexDirection: 'row',
   },
   vote: {
     color: 'gray',
+    fontSize: 16,
   },
 });

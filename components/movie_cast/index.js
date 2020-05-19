@@ -27,8 +27,8 @@ export const MovieCast = ({ data, navigation }) => {
 const styles = StyleSheet.create({
   castMember: {
     margin: 8,
-    width: 50,
+    width: 70,
     height: 70,
-    borderRadius: 15,
+    borderRadius: 35,
   },
 });

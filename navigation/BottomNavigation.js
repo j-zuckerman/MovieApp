@@ -26,14 +26,18 @@ export const BottomNavigation = () => {
               iconName = 'md-search';
             }
 
-            return <Ionicons name={iconName} size={24} color="blue" />;
+            return <Ionicons name={iconName} size={24} color="#bf211e" />;
           },
         })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
       >
         <Tab.Screen name="Home" component={DrawerNavigation} />
-        <Tab.Screen name="Favorites" component={MovieStackNavigation} />
+        <Tab.Screen name="Favorites" component={DrawerNavigation} />
         <Tab.Screen name="Search" component={SearchNavigation} />
-        <Tab.Screen name="Watch List" component={MovieStackNavigation} />
+        <Tab.Screen name="Watch List" component={DrawerNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );

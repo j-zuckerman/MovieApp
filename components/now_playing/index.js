@@ -12,7 +12,12 @@ export const NowPlaying = ({ navigation }) => {
       {nowPlayingMovies.map((movie) => (
         <View key={movie.id}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Details', { id: movie.id })}
+            onPress={() =>
+              navigation.navigate('Details', {
+                title: movie.title,
+                id: movie.id,
+              })
+            }
           >
             <MovieCard movie={movie} navigation={navigation} />
           </TouchableOpacity>

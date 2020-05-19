@@ -10,7 +10,7 @@ export const DisplayScreen = ({ navigation, route, screenProps }) => {
   const { displayType } = route.params;
   const { genreId } = route.params;
 
-  if (displayType === 'Rated') {
+  if (displayType === 'Top Rated') {
     return (
       <ScrollView>
         <TopRated navigation={navigation} />
@@ -22,7 +22,7 @@ export const DisplayScreen = ({ navigation, route, screenProps }) => {
         <MostPopular navigation={navigation} />
       </ScrollView>
     );
-  } else if (displayType === 'Playing') {
+  } else if (displayType === 'Now Playing') {
     return (
       <ScrollView>
         <NowPlaying navigation={navigation} />

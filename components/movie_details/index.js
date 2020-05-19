@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
+import { Divider } from 'react-native-elements';
 import { MovieContext } from '../../context';
 import { MovieCast } from '../movie_cast';
 import { SimilarMovies } from '../similar_movies';
@@ -37,23 +38,33 @@ export const MovieDetails = ({ movieId, navigation }) => {
         />
         <View style={styles.movieDetails}>
           <View>
-            <Text>{movieDetails.title}</Text>
-            <Text>{movieDetails.tagline}</Text>
-            <Text>{movieDetails.vote_average}</Text>
-            <Text>{movieDetails.runtime}</Text>
+            <View style={styles.firstLine}>
+              <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+              <Text style={styles.releaseDate}>
+                ({movieDetails.release_date})
+              </Text>
+            </View>
+            <Text style={styles.tagLine}>{movieDetails.tagline}</Text>
+            <Text style={styles.metadata}>
+              {movieDetails.vote_average} | {movieDetails.runtime} min.
+            </Text>
           </View>
+          <Divider style={styles.divider} />
+          <Text style={styles.header}>Cast</Text>
+          <MovieCast navigation={navigation} data={movieCast}></MovieCast>
+          <Divider style={styles.divider} />
+
+          <Text style={styles.header}>Plot</Text>
           <View style={styles.movieOverview}>
             <Text>{movieDetails.overview}</Text>
           </View>
-        </View>
-        <Text style={styles.header}>Cast</Text>
-        <MovieCast navigation={navigation} data={movieCast}></MovieCast>
 
-        <Text style={styles.header}>Similar</Text>
-        <SimilarMovies
-          navigation={navigation}
-          data={similarMovies}
-        ></SimilarMovies>
+          <Text style={styles.header}>Suggested Movies</Text>
+          <SimilarMovies
+            navigation={navigation}
+            data={similarMovies}
+          ></SimilarMovies>
+        </View>
       </ScrollView>
     );
 };
@@ -69,21 +80,56 @@ const styles = StyleSheet.create({
   movieBackdrop: {
     flex: 1,
     width: '100%',
-    height: 300,
+    height: 280,
   },
-
   movieDetails: {
     marginTop: 15,
-    padding: 10,
+    padding: 15,
   },
+  divider: {
+    color: 'black',
+    marginTop: 10,
+  },
+  firstLine: {
+    flexDirection: 'row',
+  },
+
+  movieTitle: {
+    color: '#040F16',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 20,
+    letterSpacing: 2,
+  },
+  releaseDate: {
+    color: '#808080',
+    fontSize: 14,
+  },
+  tagLine: {
+    fontSize: 16,
+    color: 'gray',
+    textTransform: 'uppercase',
+
+    fontWeight: 'bold',
+  },
+  metadata: {
+    flexDirection: 'row',
+    fontSize: 14,
+    color: '#040F16',
+  },
+
   movieOverview: {
+    fontSize: 14,
     marginTop: 15,
     marginBottom: 10,
+    color: '#333',
   },
 
   header: {
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
+
+    letterSpacing: 1,
   },
 });
