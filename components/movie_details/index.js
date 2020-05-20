@@ -23,7 +23,29 @@ export const MovieDetails = ({ movieId, navigation }) => {
     fetchDetailsPageData(movieId);
   }, [movieId]);
 
-  console.log(movieDetails);
+  //Add movie to local storage
+  const addToFavorites = async (movieId) => {
+    let storedId = JSON.parse(await AsyncStorage.getItem('Favorites')) || [];
+
+    if (storedId.indexOf(movieId) === -1) {
+      storedId.push(movieId);
+      await AsyncStorage.setItem('Favorites', JSON.stringify(storedId));
+    } else {
+    }
+    console.log(JSON.parse(await AsyncStorage.getItem('Favorites')));
+  };
+
+  //Add movie to local storage
+  const addToWatchList = async (movieId) => {
+    let storedId = JSON.parse(await AsyncStorage.getItem('WatchList')) || [];
+
+    if (storedId.indexOf(movieId) === -1) {
+      storedId.push(movieId);
+      await AsyncStorage.setItem('WatchList', JSON.stringify(storedId));
+    } else {
+    }
+    console.log(JSON.parse(await AsyncStorage.getItem('WatchList')));
+  };
 
   if (!isLoaded) {
     return (
@@ -51,11 +73,17 @@ export const MovieDetails = ({ movieId, navigation }) => {
               {movieDetails.vote_average} | {movieDetails.runtime} min.
             </Text>
             <View style={styles.buttonGroup}>
-              <Button style={styles.addButton} type="outline" title="Favorite">
+              <Button
+                style={styles.addButton}
+                onPress={() => addToFavorites(movieDetails.id)}
+                type="outline"
+                title="Favorite"
+              >
                 Favorite
               </Button>
               <Button
                 style={styles.addButton}
+                onPress={() => addToWatchList(movieDetails.id)}
                 type="outline"
                 title="Watch List"
               ></Button>

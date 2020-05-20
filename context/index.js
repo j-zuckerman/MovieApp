@@ -21,6 +21,9 @@ const MovieProvider = ({ children }) => {
   const [castMemberDetails, setCastMemberDetails] = useState([]);
   const [castMemberAppearances, setCastMemberAppearances] = useState([]);
 
+  const [favorites, setFavorites] = useState([]);
+  const [watchList, setWatchList] = useState([]);
+
   const [isLoaded, setLoaded] = useState(false);
 
   async function fetchNowPlaying() {
@@ -153,6 +156,44 @@ const MovieProvider = ({ children }) => {
     setLoaded(true);
   }
 
+  async function fetchFavorites(listOfIds) {
+    setLoaded(false);
+
+    let responses = [];
+    Promise.all(
+      listOfIds.map((id) =>
+        movieApi.get(`movie/${id}?api_key=${apiKey}&language=en-US&page=1`)
+      )
+    ).then((resolvedValues) => {
+      resolvedValues.forEach((value) => {
+        responses.push(value.data);
+      });
+    });
+    setFavorites(responses);
+
+    setLoaded(true);
+  }
+
+  async function fetchWatchList(listOfIds) {
+    setLoaded(false);
+
+    let responses = [];
+    Promise.all(
+      listOfIds.map((id) =>
+        movieApi.get(`movie/${id}?api_key=${apiKey}&language=en-US&page=1`)
+      )
+    ).then((resolvedValues) => {
+      resolvedValues.forEach((value) => {
+        responses.push(value.data);
+      });
+    });
+
+    console.log(responses);
+    setWatchList(responses);
+
+    setLoaded(true);
+  }
+
   useEffect(() => {
     fetchHomePageData();
   }, []);
@@ -160,6 +201,10 @@ const MovieProvider = ({ children }) => {
   return (
     <MovieContext.Provider
       value={{
+        watchList,
+        favorites,
+        fetchWatchList,
+        fetchFavorites,
         fetchHomePageData,
         fetchCastMemberPageData,
         fetchDetailsPageData,

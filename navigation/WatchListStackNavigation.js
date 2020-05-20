@@ -2,16 +2,16 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { DetailsScreen } from '../screens/details';
 import { CastMemberScreen } from '../screens/cast_member';
-import { FavoritesScreen } from '../screens/favorites';
+import { WatchListScreen } from '../screens/watch_list';
 
 const Stack = createStackNavigator();
 
-export default function FavoritesStackNavigation() {
+export default function WatchListStackNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Favorites"
-        component={FavoritesScreen}
+        name="Watch List"
+        component={WatchListScreen}
         options={{
           headerStyle: {
             backgroundColor: '#bf211e',
