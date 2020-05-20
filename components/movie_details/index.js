@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
-import { Divider } from 'react-native-elements';
+import { Divider, Button } from 'react-native-elements';
+import { AsyncStorage } from 'react-native';
+
 import { MovieContext } from '../../context';
 import { MovieCast } from '../movie_cast';
 import { SimilarMovies } from '../similar_movies';
@@ -48,6 +50,16 @@ export const MovieDetails = ({ movieId, navigation }) => {
             <Text style={styles.metadata}>
               {movieDetails.vote_average} | {movieDetails.runtime} min.
             </Text>
+            <View style={styles.buttonGroup}>
+              <Button style={styles.addButton} type="outline" title="Favorite">
+                Favorite
+              </Button>
+              <Button
+                style={styles.addButton}
+                type="outline"
+                title="Watch List"
+              ></Button>
+            </View>
           </View>
           <Divider style={styles.divider} />
           <Text style={styles.header}>Cast</Text>
@@ -117,7 +129,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#040F16',
   },
-
+  buttonGroup: {
+    marginTop: 10,
+    flexDirection: 'row',
+  },
+  addButton: {
+    marginRight: 10,
+  },
   movieOverview: {
     fontSize: 14,
     marginTop: 15,

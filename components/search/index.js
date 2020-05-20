@@ -23,10 +23,11 @@ export const Search = ({ route, navigation }) => {
   return (
     <ScrollView>
       <SearchBar
-        placeholder="Type Here..."
+        placeholder="Search for movies"
         onChangeText={(text) => updateSearch(text)}
         value={searchQuery}
         onSubmitEditing={handleSubmit}
+        lightTheme={true}
       />
 
       {searchResults.map((movie) => (

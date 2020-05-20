@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import MovieStackNavigation from './MovieStackNavigation';
-import SearchNavigation from './SearchNavigation';
+import SearchStackNavigation from './SearchStackNavigation';
 import { DrawerNavigation } from './DrawerNavigation';
 
 const Tab = createBottomTabNavigator();
@@ -36,7 +36,7 @@ export const BottomNavigation = () => {
       >
         <Tab.Screen name="Home" component={DrawerNavigation} />
         <Tab.Screen name="Favorites" component={DrawerNavigation} />
-        <Tab.Screen name="Search" component={SearchNavigation} />
+        <Tab.Screen name="Search" component={SearchStackNavigation} />
         <Tab.Screen name="Watch List" component={DrawerNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
